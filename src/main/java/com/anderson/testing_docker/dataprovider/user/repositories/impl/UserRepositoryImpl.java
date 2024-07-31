@@ -43,11 +43,15 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User update(User user) {
-        return null;
+        UserEntity userEntity = repository.findById(user.getId()).orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
+        userEntity.setName(user.getName());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setEmail(user.getEmail());
+        return toUser(repository.save(userEntity));
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return Optional.empty();
+        return toOptionalUser(repository.findByEmail(email));
     }
 }
