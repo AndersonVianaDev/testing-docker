@@ -46,7 +46,7 @@ public class UserRepositoryImpl implements UserRepository {
         UserEntity userEntity = repository.findById(user.getId()).orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
         userEntity.setName(user.getName());
         userEntity.setEmail(user.getEmail());
-        userEntity.setEmail(user.getEmail());
+        userEntity.setDocument(user.getDocument());
         return toUser(repository.save(userEntity));
     }
 
