@@ -3,9 +3,12 @@ package com.anderson.testing_docker.core.user.builders;
 import com.anderson.testing_docker.core.user.builder.UserBuilder;
 import com.anderson.testing_docker.core.user.domain.User;
 import com.anderson.testing_docker.core.user.dtos.UserDTO;
+import com.anderson.testing_docker.dataprovider.user.entity.UserEntity;
 
 import java.util.List;
 import java.util.UUID;
+
+import static com.anderson.testing_docker.dataprovider.user.mapper.UserEntityMapper.toUserEntity;
 
 public class UserBuilderTest {
     public static UserDTO newUserDTO() {
@@ -25,7 +28,29 @@ public class UserBuilderTest {
                 .build();
     }
 
+    public static User newUser2() {
+            return new UserBuilder()
+                    .withId(UUID.randomUUID())
+                    .withName("test2")
+                    .withEmail("test2@gmail.com")
+                    .withDocument("29345645643")
+                    .build();
+    }
+
+    public static User newUser3() {
+        return new UserBuilder()
+                .withId(UUID.randomUUID())
+                .withName("test3")
+                .withEmail("test3@gmail.com")
+                .withDocument("39345645643")
+                .build();
+    }
+
     public static List<User> newUserList() {
-        return List.of(newUser(), newUser(), newUser());
+        return List.of(newUser(), newUser2(), newUser3());
+    }
+
+    public static List<UserEntity> newUserEntityList() {
+        return List.of(toUserEntity(newUser()), toUserEntity(newUser2()), toUserEntity(newUser3()));
     }
 }
