@@ -20,6 +20,8 @@ public class UserEntity {
     @Column(unique = true)
     private String document;
 
+    private UserEntity() {}
+
     public UserEntity(UUID id, String name, String email, String document) {
         this.id = id;
         this.name = name;
